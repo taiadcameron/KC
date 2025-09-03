@@ -1,15 +1,37 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import localFont from "next/font/local";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const myFont = localFont({
+  src: "fonts/Helvetica.woff",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const helvetica = localFont({
+  src: [
+    {
+      path: "/fonts/helvetica-light-587ebe5a59211.woff",
+      weight: "300", // Light weight
+      style: "normal",
+    },
+    {
+      path: "/fonts/Helvetica.woff",
+      weight: "400", // Normal weight
+      style: "normal",
+    },
+
+    {
+      path: "/fonts/Helvetica-Bold.woff",
+      weight: "700", // Bold weight
+      style: "normal",
+    },
+    {
+      path: "/fonts/Helvetica-BoldOblique.woff",
+      weight: "700", // Bold weight, oblique style
+      style: "oblique",
+    },
+  ],
+  display: "swap",
+  variable: "--font-helvetica", // Define the CSS variable
 });
 
 export const metadata: Metadata = {
@@ -23,12 +45,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html lang="en" className={helvetica.className}>
+      <body>{children}</body>
     </html>
   );
 }
