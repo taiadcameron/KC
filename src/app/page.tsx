@@ -779,18 +779,18 @@ export default function Home() {
           duration: 0.6,
           ease: "power2.out",
         },
-        "+=0.2"
+        "-=0.4"
       );
 
     calculateMobileImageHeight();
   }, [calculateMobileImageHeight]);
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white h-[100dvh] overflow-clip">
       {/* Main Content */}
       <main
         ref={mainContentRef}
-        className="flex flex-col justify-between min-h-screen p-2 md:p-4 text-black"
+        className="flex flex-col justify-between min-h-[100dvh] p-2 md:p-4 text-black"
       >
         {/* TOP SECTION: Header with Logo and CTA */}
         <div className="flex flex-row justify-between">
@@ -874,7 +874,7 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-              <div className="mr-16">
+              <div className="lg:mr-16">
                 <p ref={introTextRef}>{introText}</p>
               </div>
             </div>
@@ -940,15 +940,11 @@ export default function Home() {
                 ref={mobileNavRef}
                 className="w-full flex flex-col items-end text-md gap-1 font-medium"
               >
-                <p className="cursor-pointer transition-all duration-300">
-                  SERVICES
-                </p>
-                <p className="cursor-pointer transition-all duration-300">
-                  ABOUT
-                </p>
-                <p className="cursor-pointer transition-all duration-300">
-                  CONTACT
-                </p>
+                <a href="/services">SERVICES</a>
+
+                <a href="/about">ABOUT</a>
+
+                <a href="/contact">CONTACT</a>
               </div>
 
               <div
