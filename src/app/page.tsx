@@ -970,7 +970,9 @@ export default function Home() {
                   className="w-full flex-1 flex flex-col h-full"
                 >
                   <Image
-                    ref={(el) => (imagesRef.current[index + 3] = el)}
+                    ref={(el) => {
+                      imagesRef.current[index + 3] = el;
+                    }}
                     src={project.images[0]}
                     alt={`Showcase of ${project.title}`}
                     className="w-full mb-2 transition-all duration-300 cursor-pointer opacity-0 flex-1 object-cover"
