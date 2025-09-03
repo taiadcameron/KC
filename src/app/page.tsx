@@ -8,7 +8,7 @@ import sideArrow from "../../public/Group 6.svg";
 import logo from "../../public/kclgoo.svg";
 import boxarrow from "../../public/box-arrow.svg";
 import arrow2 from "../../public/downarrow.svg";
-import { useEffect, useRef, useCallback, useState } from "react";
+import { useEffect, useRef, useCallback, useState, useMemo } from "react";
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
 gsap.registerPlugin(Flip);
@@ -18,35 +18,39 @@ export default function Home() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const projects = [
-    {
-      id: "01",
-      title: "MORTON MARTIAL ARTS",
-      images: [img1, img2, img1, img2],
-      url: "/MortonMartialArts",
-      desc: "DFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDJADFKDAFMDKFMSDFSDFS",
-      services: "Web Design / SEO",
-      tools: "Figma / Framer",
-    },
-    {
-      id: "02",
-      title: "LOCH STOCH",
-      images: [img1, img2],
-      url: "#",
-      desc: "DFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDJADFKDAFMDKFMSDFSDFS",
-      services: "Web Design / SEO",
-      tools: "Figma / Framer",
-    },
-    {
-      id: "03",
-      title: "AMARILS",
-      images: [img1, img2],
-      url: "#",
-      desc: "DFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDJADFKDAFMDKFMSDFSDFS",
-      services: "Web Design / SEO",
-      tools: "Figma / Framer",
-    },
-  ];
+  const projects = useMemo(
+    () => [
+      {
+        id: "01",
+        title: "MORTON MARTIAL ARTS",
+        images: [img1, img2, img1, img2],
+        url: "/MortonMartialArts",
+        desc: "DFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDJADFKDAFMDKFMSDFSDFS",
+        services: "Web Design / SEO",
+        tools: "Figma / Framer",
+      },
+      {
+        id: "02",
+        title: "LOCH STOCH",
+        images: [img1, img2],
+        url: "#",
+        desc: "DFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDJADFKDAFMDKFMSDFSDFS",
+        services: "Web Design / SEO",
+        tools: "Figma / Framer",
+      },
+      {
+        id: "03",
+        title: "AMARILS",
+        images: [img1, img2],
+        url: "#",
+        desc: "DFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDJADFKDAFMDKFMSDFSDFS",
+        services: "Web Design / SEO",
+        tools: "Figma / Framer",
+      },
+    ],
+    []
+  );
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const introText = `Based in London, we are a design and SEO agency that believes a great website is built with intention. We partner with businesses to create considered online experiences that not only look exceptional but perform flawlessly. Our focus is on merging thoughtful design with strategic SEO to ensure you connect meaningfully with your audience and achieve your goals.`;
@@ -75,7 +79,7 @@ export default function Home() {
 
     const nextIndex = (currentImageIndex + 1) % images.length;
     setCurrentImageIndex(nextIndex);
-  }, [projects, selectedProject, currentImageIndex]);
+  }, [selectedProject, currentImageIndex, projects]);
 
   // Calculate mobile image height based on available space
   const calculateMobileImageHeight = useCallback(() => {
@@ -121,132 +125,129 @@ export default function Home() {
   }, [projects.length]);
 
   // Handle project click with ghost animation
-  const handleProjectClick = useCallback(
-    (index: number) => {
-      const rawEl = imagesRef.current[index] || imagesRef.current[index + 3];
-      const imgEl = getImgEl(rawEl as HTMLImageElement);
-      if (!imgEl || !overlayRef.current) return;
+  const handleProjectClick = useCallback((index: number) => {
+    const rawEl = imagesRef.current[index] || imagesRef.current[index + 3];
+    const imgEl = getImgEl(rawEl as HTMLImageElement);
+    if (!imgEl || !overlayRef.current) return;
 
-      // Set states first
-      setSelectedProject(index);
-      setCurrentImageIndex(0);
-      setIsModalOpen(true);
+    // Set states first
+    setSelectedProject(index);
+    setCurrentImageIndex(0);
+    setIsModalOpen(true);
 
-      // Store reference and prevent body scroll
-      openImgRef.current = imgEl;
-      const prevOverflow = document.body.style.overflow;
-      (document.body as any).__prevOverflow = prevOverflow;
-      document.body.style.overflow = "hidden";
+    // Store reference and prevent body scroll
+    openImgRef.current = imgEl;
+    const prevOverflow = document.body.style.overflow;
+    (
+      document.body as HTMLElement & { __prevOverflow?: string }
+    ).__prevOverflow = prevOverflow;
+    document.body.style.overflow = "hidden";
 
-      const rect = imgEl.getBoundingClientRect();
+    const rect = imgEl.getBoundingClientRect();
 
-      // Create ghost image
-      const ghost = document.createElement("img");
-      ghostRef.current = ghost;
-      ghost.src = imgEl.currentSrc || imgEl.src;
-      Object.assign(ghost.style, {
-        position: "fixed",
-        left: rect.left + "px",
-        top: rect.top + "px",
-        width: rect.width + "px",
-        height: rect.height + "px",
-        objectFit: "cover",
-        zIndex: "101",
-        borderRadius: "8px",
-      });
+    // Create ghost image
+    const ghost = document.createElement("img");
+    ghostRef.current = ghost;
+    ghost.src = imgEl.currentSrc || imgEl.src;
+    Object.assign(ghost.style, {
+      position: "fixed",
+      left: rect.left + "px",
+      top: rect.top + "px",
+      width: rect.width + "px",
+      height: rect.height + "px",
+      objectFit: "cover",
+      zIndex: "101",
+      borderRadius: "8px",
+    });
 
-      // Calculate target dimensions
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const ratio =
-        imgEl.naturalWidth && imgEl.naturalHeight
-          ? imgEl.naturalWidth / imgEl.naturalHeight
-          : rect.width / rect.height;
+    // Calculate target dimensions
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const ratio =
+      imgEl.naturalWidth && imgEl.naturalHeight
+        ? imgEl.naturalWidth / imgEl.naturalHeight
+        : rect.width / rect.height;
 
-      const targetH = Math.min(vh * 0.5, 400);
-      const targetW = Math.min(vw * 0.4, targetH * ratio);
-      const finalLeft = (vw - targetW) / 2;
-      const finalTop = (vh - targetH) / 2;
+    const targetH = Math.min(vh * 0.5, 400);
+    const targetW = Math.min(vw * 0.4, targetH * ratio);
+    const finalLeft = (vw - targetW) / 2;
+    const finalTop = (vh - targetH) / 2;
 
-      const overlay = overlayRef.current;
-      overlay.style.display = "flex";
-      overlay.style.pointerEvents = "auto";
+    const overlay = overlayRef.current;
+    overlay.style.display = "flex";
+    overlay.style.pointerEvents = "auto";
 
-      const ghostContainer = document.getElementById("ghost-container");
-      if (ghostContainer) {
-        ghostContainer.innerHTML = "";
-        ghostContainer.appendChild(ghost);
+    const ghostContainer = document.getElementById("ghost-container");
+    if (ghostContainer) {
+      ghostContainer.innerHTML = "";
+      ghostContainer.appendChild(ghost);
+    }
+
+    imgEl.style.visibility = "hidden";
+
+    // Use setTimeout to ensure DOM is updated before animation
+    setTimeout(() => {
+      // Set up modal image with same dimensions - now targeting first slide
+      const modalCarousel = modalImageRef.current;
+      const firstSlide = modalCarousel?.querySelector(
+        'div[style*="height: 400"]'
+      ) as HTMLElement;
+      if (firstSlide) {
+        const slideImage = firstSlide.querySelector("img") as HTMLImageElement;
+        if (slideImage) {
+          slideImage.style.opacity = "0";
+        }
+        firstSlide.style.width = `${targetW}px`;
+        firstSlide.style.height = `${targetH}px`;
       }
 
-      imgEl.style.visibility = "hidden";
-
-      // Use setTimeout to ensure DOM is updated before animation
-      setTimeout(() => {
-        // Set up modal image with same dimensions - now targeting first slide
-        const modalCarousel = modalImageRef.current;
-        const firstSlide = modalCarousel?.querySelector(
-          'div[style*="height: 400"]'
-        ) as HTMLElement;
-        if (firstSlide) {
-          const slideImage = firstSlide.querySelector(
-            "img"
-          ) as HTMLImageElement;
-          if (slideImage) {
-            slideImage.style.opacity = "0";
-          }
-          firstSlide.style.width = `${targetW}px`;
-          firstSlide.style.height = `${targetH}px`;
-        }
-
-        gsap
-          .timeline()
-          .to(overlay, { opacity: 1, duration: 0.3, ease: "power2.out" })
-          .to(
-            ghost,
-            {
-              left: finalLeft,
-              top: finalTop,
-              width: targetW,
-              height: targetH,
-              duration: 0.8,
-              ease: "power3.inOut",
-              onComplete: () => {
-                // Seamless switch to modal carousel
-                const firstSlide = modalCarousel?.querySelector(
-                  'div[style*="height: 400"]'
-                ) as HTMLElement;
-                if (firstSlide) {
-                  const slideImage = firstSlide.querySelector(
-                    "img"
-                  ) as HTMLImageElement;
-                  if (slideImage) {
-                    slideImage.style.opacity = "1";
-                  }
+      gsap
+        .timeline()
+        .to(overlay, { opacity: 1, duration: 0.3, ease: "power2.out" })
+        .to(
+          ghost,
+          {
+            left: finalLeft,
+            top: finalTop,
+            width: targetW,
+            height: targetH,
+            duration: 0.8,
+            ease: "power3.inOut",
+            onComplete: () => {
+              // Seamless switch to modal carousel
+              const firstSlide = modalCarousel?.querySelector(
+                'div[style*="height: 400"]'
+              ) as HTMLElement;
+              if (firstSlide) {
+                const slideImage = firstSlide.querySelector(
+                  "img"
+                ) as HTMLImageElement;
+                if (slideImage) {
+                  slideImage.style.opacity = "1";
                 }
-                if (ghost && ghost.parentNode) {
-                  ghost.parentNode.removeChild(ghost);
-                }
-                ghostRef.current = null;
-              },
+              }
+              if (ghost && ghost.parentNode) {
+                ghost.parentNode.removeChild(ghost);
+              }
+              ghostRef.current = null;
             },
-            "<"
-          )
-          .fromTo(
-            ".overlay-heading, .overlay-logo, .overlay-details, .overlay-view, .overlay-carousel-controls",
-            { opacity: 0, y: 20 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              stagger: 0.1,
-              ease: "power2.out",
-            },
-            "-=0.4"
-          );
-      }, 0);
-    },
-    [projects]
-  );
+          },
+          "<"
+        )
+        .fromTo(
+          ".overlay-heading, .overlay-logo, .overlay-details, .overlay-view, .overlay-carousel-controls",
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "power2.out",
+          },
+          "-=0.4"
+        );
+    }, 0);
+  }, []);
 
   // Handle modal close with reverse ghost animation
   const handleCloseModal = useCallback(() => {
@@ -319,7 +320,9 @@ export default function Home() {
           openImgRef.current = null;
 
           // Restore body scroll
-          const prevOverflow = (document.body as any).__prevOverflow || "";
+          const prevOverflow =
+            (document.body as HTMLElement & { __prevOverflow?: string })
+              .__prevOverflow || "";
           document.body.style.overflow = prevOverflow;
           setIsModalOpen(false);
           setSelectedProject(null);
