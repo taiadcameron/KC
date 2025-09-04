@@ -365,14 +365,16 @@ export default function Home() {
   }, [currentImageIndex]);
 
   // Add interactive hover handlers for linking images and project text
+
   const handleProjectHover = useCallback(
     (index: number, isHovering: boolean) => {
       const desktopImage = imagesRef.current[index];
       const mobileImage = imagesRef.current[index + 3];
       const projectText = projectTextRefs.current[index];
+      const isMobile = window.innerWidth < 768;
 
       if (isHovering) {
-        if (desktopImage) {
+        if (desktopImage && !isMobile) {
           gsap.to(desktopImage, {
             filter: "grayscale(0%)",
             scaleX: 1.05,
@@ -380,9 +382,8 @@ export default function Home() {
             ease: "power2.out",
           });
         }
-        if (mobileImage) {
+        if (mobileImage && isMobile) {
           gsap.to(mobileImage, {
-            filter: "grayscale(0%)",
             scaleX: 1.05,
             duration: 0.3,
             ease: "power2.out",
@@ -396,7 +397,7 @@ export default function Home() {
           });
         }
       } else {
-        if (desktopImage) {
+        if (desktopImage && !isMobile) {
           gsap.to(desktopImage, {
             filter: "grayscale(100%)",
             scaleX: 1,
@@ -404,7 +405,7 @@ export default function Home() {
             ease: "power2.out",
           });
         }
-        if (mobileImage) {
+        if (mobileImage && isMobile) {
           gsap.to(mobileImage, {
             scaleX: 1,
             duration: 0.3,
@@ -569,6 +570,9 @@ export default function Home() {
     const mobileProjectsHeaderElement = mobileProjectsHeaderRef.current;
     const mobileProjectDetailsElements = mobileProjectDetailsRef.current;
 
+    // Check if it's mobile
+    const isMobile = window.innerWidth < 768;
+
     // Initially hide all content
     gsap.set(headingElement, {
       opacity: 0,
@@ -576,13 +580,26 @@ export default function Home() {
       rotationX: -15,
     });
 
-    gsap.set(imageElements, {
-      opacity: 0,
-      y: 40,
-      scale: 0.95,
-      filter: "blur(4px) grayscale(100%)",
-      visibility: "hidden",
-    });
+    // Set different initial states for desktop vs mobile images
+    if (isMobile) {
+      // Mobile images: no grayscale, just blur
+      gsap.set(imageElements, {
+        opacity: 0,
+        y: 40,
+        scale: 0.95,
+        filter: "blur(4px)",
+        visibility: "hidden",
+      });
+    } else {
+      // Desktop images: grayscale + blur
+      gsap.set(imageElements, {
+        opacity: 0,
+        y: 40,
+        scale: 0.95,
+        filter: "blur(4px) grayscale(100%)",
+        visibility: "hidden",
+      });
+    }
 
     gsap.set([projectsHeaderElement, projectsListElement], {
       opacity: 0,
@@ -695,7 +712,7 @@ export default function Home() {
           opacity: 1,
           y: 0,
           scale: 1,
-          filter: "blur(0px) grayscale(100%)",
+          filter: isMobile ? "blur(0px)" : "blur(0px) grayscale(100%)", // Different final states
           visibility: "visible",
           duration: 0.7,
           stagger: {
@@ -923,8 +940,12 @@ export default function Home() {
                 <a
                   href="/services"
                   className="hover:font-black"
-                  onMouseEnter={(e) => (e.target.style.fontWeight = "bold")}
-                  onMouseLeave={(e) => (e.target.style.fontWeight = "normal")}
+                  onMouseEnter={(e) =>
+                    ((e.target as HTMLElement).style.fontWeight = "bold")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.target as HTMLElement).style.fontWeight = "normal")
+                  }
                 >
                   SERVICES
                 </a>
@@ -933,8 +954,12 @@ export default function Home() {
                 <a
                   href="/about"
                   className="hover:font-black"
-                  onMouseEnter={(e) => (e.target.style.fontWeight = "bold")}
-                  onMouseLeave={(e) => (e.target.style.fontWeight = "normal")}
+                  onMouseEnter={(e) =>
+                    ((e.target as HTMLElement).style.fontWeight = "bold")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.target as HTMLElement).style.fontWeight = "normal")
+                  }
                 >
                   ABOUT
                 </a>
@@ -943,8 +968,12 @@ export default function Home() {
                 <a
                   href="/contact"
                   className="hover:font-black"
-                  onMouseEnter={(e) => (e.target.style.fontWeight = "bold")}
-                  onMouseLeave={(e) => (e.target.style.fontWeight = "normal")}
+                  onMouseEnter={(e) =>
+                    ((e.target as HTMLElement).style.fontWeight = "bold")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.target as HTMLElement).style.fontWeight = "normal")
+                  }
                 >
                   CONTACT
                 </a>
@@ -953,7 +982,7 @@ export default function Home() {
           </div>
 
           {/* BOTTOM SECTION - MOBILE LAYOUT */}
-          <div className="flex flex-col md:hidden w-full items-start gap-2 mt-4 flex-1 mb-4">
+          <div className="flex flex-col md:hidden w-full items-start gap-2  flex-1 mb-4">
             <p ref={mobileIntroRef} className="text-sm">
               {introText}
             </p>
