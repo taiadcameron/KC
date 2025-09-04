@@ -1,18 +1,24 @@
 "use client";
 
-import { useState, useEffect } from "react";
-
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-// Mock components since we don't have Next.js Image
 import sideArrow from "../../../public/Group 6.svg";
 import img1 from "../../../public/bird.jpg";
 import logo from "../../../public/kclgoo.svg";
 import { useRouter } from "next/navigation";
+import { gsap } from "gsap";
 
 export default function MortonMartialArts() {
   const router = useRouter();
-
   const [scrollY, setScrollY] = useState(0);
+
+  // Refs for animation
+  const projectNumberRef = useRef<HTMLParagraphElement>(null);
+  const viewSiteRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const toolsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +27,83 @@ export default function MortonMartialArts() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const projectNumberElement = projectNumberRef.current;
+    const viewSiteElement = viewSiteRef.current;
+    const titleElement = titleRef.current;
+    const descriptionElement = descriptionRef.current;
+    const servicesElement = servicesRef.current;
+    const toolsElement = toolsRef.current;
+
+    // Initially hide all text content
+    gsap.set(
+      [
+        projectNumberElement,
+        viewSiteElement,
+        titleElement,
+        descriptionElement,
+        servicesElement,
+        toolsElement,
+      ],
+      {
+        opacity: 0,
+        y: 30,
+      }
+    );
+
+    // Create animation timeline
+    const tl = gsap.timeline();
+
+    tl.to(projectNumberElement, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      delay: 0.5,
+    })
+      .to(
+        viewSiteElement,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.5"
+      )
+      .to(
+        titleElement,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power2.out",
+        },
+        "-=0.3"
+      )
+      .to(
+        descriptionElement,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.2"
+      )
+      .to(
+        [servicesElement, toolsElement],
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: "power2.out",
+        },
+        "-=0.3"
+      );
   }, []);
 
   return (
@@ -45,8 +128,10 @@ export default function MortonMartialArts() {
         <div className="p-4">
           <div className="flex w-full justify-between items-top">
             <div>
-              <p className="text-4xl font-bold ">01</p>
-              <div className=" flex  gap-4">
+              <p ref={projectNumberRef} className="text-4xl font-bold ">
+                01
+              </p>
+              <div ref={viewSiteRef} className=" flex  gap-4">
                 <p className="">VIEW SITE</p>{" "}
                 <Image
                   src={sideArrow}
@@ -58,20 +143,22 @@ export default function MortonMartialArts() {
               </div>
             </div>
             <div className="w-1/2">
-              <h1 className="text-4xl font-bold ">MORTON MARTIAL ARTS</h1>
+              <h1 ref={titleRef} className="text-4xl font-bold ">
+                MORTON MARTIAL ARTS
+              </h1>
             </div>
           </div>
 
-          <p className="mt-4 break-words ">
+          <p ref={descriptionRef} className="mt-4 break-words ">
             DFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDJADFKDAFMDKFMSDFSDFS
           </p>
 
           <div className="w-full flex flex-col justify-between">
-            <div className="flex justify-between w-full mt-4">
+            <div ref={servicesRef} className="flex justify-between w-full mt-4">
               <p className="text-gray-600">Services</p>
               <p className="font-bold">Web Design / SEO</p>
             </div>
-            <div className="flex justify-between w-full">
+            <div ref={toolsRef} className="flex justify-between w-full">
               <p className="text-gray-600">Tools</p>
               <p className="font-bold">Figma / Framer</p>
             </div>
@@ -112,7 +199,7 @@ export default function MortonMartialArts() {
               />
             </div>
           </div>
-          {/* Second image */}
+          {/* Third image */}
           <div
             className="flex justify-center items-center min-h-screen p-2"
             style={{

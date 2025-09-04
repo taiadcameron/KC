@@ -406,7 +406,6 @@ export default function Home() {
         }
         if (mobileImage) {
           gsap.to(mobileImage, {
-            filter: "grayscale(100%)",
             scaleX: 1,
             duration: 0.3,
             ease: "power2.out",
@@ -820,7 +819,10 @@ export default function Home() {
               ref={ctaRef}
               className="text-md font-bold flex flex-col items-center cursor-pointer transition-all duration-300 hidden md:flex"
             >
-              <p>WORK WITH US</p>
+              <a href="/contact">
+                {" "}
+                <p> WORK WITH US</p>
+              </a>{" "}
               <div>
                 <Image src={boxarrow} alt="Arrow icon" width={24} height={24} />
               </div>
@@ -918,13 +920,34 @@ export default function Home() {
               className="w-1/3 flex flex-col items-end justify-end text-lg font-medium"
             >
               <p className="cursor-pointer hover:opacity-70 transition-all duration-300">
-                <a href="/services">SERVICES</a>
+                <a
+                  href="/services"
+                  className="hover:font-black"
+                  onMouseEnter={(e) => (e.target.style.fontWeight = "bold")}
+                  onMouseLeave={(e) => (e.target.style.fontWeight = "normal")}
+                >
+                  SERVICES
+                </a>
               </p>
               <p className="cursor-pointer hover:opacity-70 transition-all duration-300">
-                <a href="/about">ABOUT</a>
+                <a
+                  href="/about"
+                  className="hover:font-black"
+                  onMouseEnter={(e) => (e.target.style.fontWeight = "bold")}
+                  onMouseLeave={(e) => (e.target.style.fontWeight = "normal")}
+                >
+                  ABOUT
+                </a>
               </p>
               <p className="cursor-pointer hover:opacity-70 transition-all duration-300">
-                <a href="/contact">CONTACT</a>
+                <a
+                  href="/contact"
+                  className="hover:font-black"
+                  onMouseEnter={(e) => (e.target.style.fontWeight = "bold")}
+                  onMouseLeave={(e) => (e.target.style.fontWeight = "normal")}
+                >
+                  CONTACT
+                </a>
               </p>
             </div>
           </div>

@@ -259,7 +259,7 @@ export default function Services() {
 
                   <motion.div
                     variants={childVariants}
-                    className="max-w-2/5 mt-12"
+                    className="lg:max-w-2/5 mt-12"
                   >
                     <div className="grid grid-cols-2 grid-rows-2 gap-8">
                       <div className="flex flex-col gap-2">

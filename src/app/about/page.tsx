@@ -3,9 +3,92 @@ import Image from "next/image";
 import logo from "../../../public/kclgoo.svg";
 import { useRouter } from "next/navigation";
 import bg1 from "../../../public/bg1.svg";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 
 const About = () => {
   const router = useRouter();
+
+  // Refs for animation
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const introTextRef = useRef<HTMLParagraphElement>(null);
+  const locationRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
+  const technologiesRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const headingElement = headingRef.current;
+    const introTextElement = introTextRef.current;
+    const locationElement = locationRef.current;
+    const contactElement = contactRef.current;
+    const technologiesElement = technologiesRef.current;
+    const imageElement = imageRef.current;
+
+    // Initially hide all content
+    gsap.set(headingElement, {
+      opacity: 0,
+      y: 60,
+      rotationX: -15,
+    });
+
+    gsap.set(
+      [
+        introTextElement,
+        locationElement,
+        contactElement,
+        technologiesElement,
+        imageElement,
+      ],
+      {
+        opacity: 0,
+        y: 30,
+      }
+    );
+
+    // Create animation timeline
+    const tl = gsap.timeline();
+
+    tl.to(headingElement, {
+      opacity: 1,
+      y: 0,
+      rotationX: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      delay: 0.5,
+    })
+      .to(
+        introTextElement,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power2.out",
+        },
+        "-=0.3"
+      )
+      .to(
+        [locationElement, contactElement, technologiesElement],
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: "power2.out",
+        },
+        "-=0.2"
+      )
+      .to(
+        imageElement,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.4"
+      );
+  }, []);
 
   return (
     <>
@@ -28,11 +111,17 @@ const About = () => {
       <div className="w-full px-2 lg:px-8 flex pt-24 lg:pt-30 justify-between h-screen pb-12">
         <div className="w-full flex-col h-full flex">
           <div className="flex flex-col justify-between">
-            <h1 className="mb-2 text-4xl md:text-6xl lg:text-9xl font-black">
+            <h1
+              ref={headingRef}
+              className="mb-2 text-4xl md:text-6xl lg:text-9xl font-black"
+            >
               ABOUT US
             </h1>
 
-            <p className="text-sm lg:text-base md:w-3/5 lg:w-1/2">
+            <p
+              ref={introTextRef}
+              className="text-sm lg:text-base md:w-3/5 lg:w-1/2"
+            >
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi
               totam corrupti hic ipsum similique quod voluptatibus at rem
               laboriosam repellat! Temporibus magnam vero, dolorem harum ut vel
@@ -52,13 +141,13 @@ const About = () => {
 
           <div className="flex lg:mt-12 mt-4 flex-col lg:flex-row">
             <div className="flex flex-col w-full lg:w-1/2 font-bold h-full justify-start gap-8 lg:gap-12">
-              <div className="flex justify-between">
+              <div ref={locationRef} className="flex justify-between">
                 <p className="text-gray-500 w-full">LOCATION</p>
                 <div className="flex flex-col w-full text-right lg:text-left">
                   <p>LONDON</p>
                 </div>
               </div>
-              <div className="flex justify-between">
+              <div ref={contactRef} className="flex justify-between">
                 <p className="text-gray-500 w-full">CONTACT</p>
                 <div className="text-right lg:text-left flex w-full flex-col">
                   <p>X</p>
@@ -66,7 +155,7 @@ const About = () => {
                   <p>EMAIL</p>
                 </div>
               </div>
-              <div className="flex justify-between">
+              <div ref={technologiesRef} className="flex justify-between">
                 <p className="text-gray-500 w-full">TECHNOLOGIES</p>
                 <div className="flex text-right lg:text-left w-full flex-col">
                   <p>HTML</p>
@@ -79,7 +168,10 @@ const About = () => {
             </div>
 
             {/* Image container - full width on mobile/tablet, constrained on desktop */}
-            <div className="h-full flex justify-end items-end mt-2 w-full lg:w-1/2">
+            <div
+              ref={imageRef}
+              className="h-full flex justify-end items-end mt-2 w-full lg:w-1/2"
+            >
               {/* Mobile/Tablet: Full width image */}
               <div className="w-full lg:hidden">
                 <Image
