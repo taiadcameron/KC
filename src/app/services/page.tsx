@@ -84,19 +84,24 @@ export default function Services() {
       transition: { duration: 0.6, ease: "easeIn" },
     },
   };
+  const handleBackClick = () => {
+    console.log("Back button clicked");
+    console.log("Router:", router);
+    router.push("/");
+  };
 
   return (
     <>
       {/* ✅ Top bar always visible */}
-      <div className="flex justify-between fixed w-full items-start p-2 lg:p-8 z-10">
+      <div className="flex justify-between fixed  w-full items-start p-2 lg:p-8 z-50">
         <div className="overlay-heading text-gray-400">
           <h1 className="text-2xl font-bold">KETER</h1>
           <h1 className="text-2xl font-bold">CREATIVE</h1>
         </div>
         <button
           type="button"
-          className="overlay-logo flex flex-col items-center cursor-pointer z-10 bg-transparent border-none"
-          onClick={() => router.push("/")}
+          className="overlay-logo flex flex-col items-center cursor-pointer z-30 bg-transparent border-none"
+          onClick={handleBackClick} // Changed this line
         >
           <Image src={logo} alt="Logo small" width={40} height={40} />
           <span className="text-sm mt-1">BACK</span>
@@ -236,78 +241,63 @@ export default function Services() {
                 <>
                   <motion.h1
                     variants={childVariants}
-                    className="text-4xl md:text-9xl font-bold mb-4 0"
+                    className="text-4xl md:text-9xl font-bold mb-4"
                   >
                     WEBSITES
                   </motion.h1>
                   <motion.p
                     variants={childVariants}
-                    className="text-sm lg:base max-w-4xl"
+                    className="text-base max-w-3xl text-sm lg:base"
                   >
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. At
-                    mollitia alias, perspiciatis illo consequatur officiis
-                    quaerat excepturi temporibus fugit eveniet incidunt rerum
-                    nesciunt nostrum omnis harum culpa. Hic, dicta repellendus.
+                    Our SEO strategies help your business rank higher on Google,
+                    drive traffic, and increase conversions. With keyword
+                    research, technical optimization, and high-quality content,
+                    we’ll ensure you stand out from your competition.
                     <br />
                     <br />
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Illo repellendus, assumenda minus consectetur eligendi quae,
-                    porro fuga modi officia tempore quidem labore sapiente
-                    commodi? Soluta, exercitationem? Adipisci debitis magni
-                    voluptatem.
+                    We focus on long-term growth and measurable results — making
+                    sure your customers can actually find you when it matters.
                   </motion.p>
-                  <div className="h-full flex flex-col justify-between mb-12">
-                    <motion.div
-                      variants={childVariants}
-                      className="lg:max-w-2/5 mt-12"
-                    >
-                      <div className="grid text-sm lg:base grid-cols-2 grid-rows-2 gap-4">
-                        <div className="flex flex-col gap-2">
-                          <p>01</p>
-                          <div className="bg-white h-0.5 w-1/4"></div>
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Perspiciatis praesentium accusamus dolores
-                            totam neque est aperiam, nesciunt saepe odit eos.
-                          </p>
-                        </div>
 
-                        <div className="flex flex-col gap-2">
-                          <p>02</p>
-                          <div className="bg-white h-0.5 w-1/4"></div>
-                          <p>
-                            Dolorum consequatur excepturi, sapiente ullam rerum
-                            quasi deserunt a placeat dolore ipsa mollitia.
-                          </p>
-                        </div>
-
-                        <div className="flex row-start-2 flex-col gap-2">
-                          <p>03</p>
-                          <div className="bg-white h-0.5 w-1/4"></div>
-                          <p>
-                            Architecto reiciendis perferendis delectus natus,
-                            possimus beatae dignissimos provident laboriosam.
-                          </p>
-                        </div>
-                        <div className="flex row-start-2 flex-col gap-2">
-                          <p>04</p>
-                          <div className="bg-white h-0.5 w-1/4"></div>
-                          <p>
-                            Architecto reiciendis perferendis delectus natus,
-                            possimus beatae dignissimos provident laboriosam.
-                          </p>
-                        </div>
+                  <motion.div
+                    variants={childVariants}
+                    className="w-full md:max-w-3xl mt-4 md:mt-12 text-sm lg:base"
+                  >
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="flex flex-col gap-2">
+                        <p>01</p>
+                        <div className="bg-white h-0.5 w-1/4"></div>
+                        <p>
+                          In-depth keyword research to refine your audience
+                          targeting and drive relevant traffic.
+                        </p>
                       </div>
-                    </motion.div>
-                    <motion.div
-                      variants={childVariants}
-                      className=" border-y-2 w-full md:w-fit px-12  flex justify-center  py-2"
-                    >
-                      <Link href="/contact" className="text-white text-xl  ">
-                        GET IN TOUCH
-                      </Link>
-                    </motion.div>
-                  </div>
+                      <div className="flex flex-col gap-2">
+                        <p>02</p>
+                        <div className="bg-white h-0.5 w-1/4"></div>
+                        <p>
+                          On-page and technical SEO improvements to boost speed,
+                          structure, and crawlability.
+                        </p>
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        <p>03</p>
+                        <div className="bg-white h-0.5 w-1/4"></div>
+                        <p>
+                          Backlink building and content strategies that move you
+                          up in search rankings.
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                  <motion.div
+                    variants={childVariants}
+                    className="lg:mt-8 border-y-2 w-full md:w-fit px-12  flex justify-center mt-24 py-2"
+                  >
+                    <Link href="/contact" className="text-white text-xl  ">
+                      GET IN TOUCH
+                    </Link>
+                  </motion.div>
                 </>
               )}
 
@@ -366,7 +356,7 @@ export default function Services() {
                   </motion.div>
                   <motion.div
                     variants={childVariants}
-                    className="lg:mt-8 border-y-2 w-full md:w-fit px-12  flex justify-center  py-2"
+                    className="lg:mt-8 border-y-2 w-full md:w-fit px-12  flex justify-center mt-24 py-2"
                   >
                     <Link href="/contact" className="text-white text-xl  ">
                       GET IN TOUCH
