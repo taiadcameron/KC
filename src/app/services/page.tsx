@@ -103,7 +103,7 @@ export default function Services() {
         </button>
       </div>
 
-      <div className="h-screen overflow-clip flex flex-col">
+      <div className="h-dvh overflow-clip flex flex-col">
         {/* ✅ Main content (fades away when expanded) */}
         <AnimatePresence>
           {!expanded && (

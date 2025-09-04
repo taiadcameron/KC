@@ -108,7 +108,7 @@ const About = () => {
         </button>
       </div>
 
-      <div className="w-full px-2 lg:px-8 flex pt-24 lg:pt-30 justify-between h-screen pb-12">
+      <div className="w-full px-2 lg:px-8 flex pt-24 lg:pt-30 justify-between h-dvh pb-12">
         <div className="w-full flex-col h-full flex">
           <div className="flex flex-col justify-between">
             <h1

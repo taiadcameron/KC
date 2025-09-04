@@ -79,7 +79,7 @@ export default function Contact() {
           <span className="text-sm mt-1">BACK</span>
         </button>
       </div>
-      <div className="flex w-full h-screen pt-20 md:pt-30 p-2 md:px-8 ">
+      <div className="flex w-full h-dvh pt-20 md:pt-30 p-2 md:px-8 ">
         <div className="w-full flex flex-col ">
           <h1
             ref={headingRef}
