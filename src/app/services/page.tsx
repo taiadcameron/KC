@@ -99,7 +99,7 @@ export default function Services() {
           onClick={() => router.push("/")}
         >
           <Image src={logo} alt="Logo small" width={40} height={40} />
-          <span className="text-sm mt-1">BACK</span>
+          <span className="text-sm mt-1 invert text-white">BACK</span>
         </button>
       </div>
 
@@ -109,7 +109,7 @@ export default function Services() {
           {!expanded && (
             <motion.div
               key="main-content"
-              className="px-2 lg:px-8 pt-30 z-10 relative flex flex-col justify-between h-1/2"
+              className="px-2 lg:px-8 pt-24 lg:pt-30 z-10 relative flex flex-col justify-between h-1/2"
               variants={mainContainerVariants}
               initial="hidden"
               animate="visible"
@@ -137,9 +137,9 @@ export default function Services() {
               {/* Services - Mobile */}
               <motion.div
                 variants={childVariants}
-                className="block md:hidden mt-4"
+                className="block md:hidden mt-4 invert text-white"
               >
-                <p className="text-sm">
+                <p className="text-sm  ">
                   Lorem ipsum dolor sit amet consectetur adipisicing{" "}
                 </p>
                 <div className="w-full flex justify-between items-center gap-2">
@@ -149,7 +149,7 @@ export default function Services() {
                   >
                     WEBSITES
                   </p>
-                  <div className="h-0.5 bg-black w-full"></div>
+                  <div className="h-0.5 bg-white w-full"></div>
                   <p
                     className="text-sm font-semibold cursor-pointer"
                     onClick={() => handleServiceClick("seo")}
@@ -196,7 +196,7 @@ export default function Services() {
           key="background-image"
           className="px-2 w-full fixed bottom-0 left-0 right-0 m-auto z-0"
           initial={{ height: "48vh", width: "99%" }}
-          animate={{ height: expanded ? "85vh" : "48vh", width: "99%" }}
+          animate={{ height: expanded ? "100vh" : "48vh", width: "99%" }}
           transition={{
             duration: 1,
             ease: "easeInOut",
@@ -217,7 +217,7 @@ export default function Services() {
           {expanded && activeService && (
             <motion.div
               key={activeService}
-              className="absolute inset-0 flex flex-col text-white pt-35 px-6 z-10 overflow-y-auto"
+              className="absolute inset-0 flex flex-col text-white mt-24 lg:pt-35 px-6 z-10 overflow-y-auto"
               variants={overlayContainerVariants}
               initial="hidden"
               animate="visible"
@@ -227,7 +227,7 @@ export default function Services() {
               {/* Close button */}
               <button
                 onClick={handleClose}
-                className="absolute top-5 right-8 text-white text-lg cursor-pointer mt-32"
+                className="absolute top-5 right-8 text-white text-lg cursor-pointer -mt-4 lg:mt-32"
               >
                 (Close)
               </button>
@@ -303,7 +303,7 @@ export default function Services() {
                   </motion.div>
                   <motion.div
                     variants={childVariants}
-                    className="mt-8 border-y-2 w-fit px-12  flex justify-center  py-2"
+                    className="mt-8 border-y-2 w-full md:w-fit px-12  flex justify-center  py-2"
                   >
                     <Link href="/contact" className="text-white text-xl  ">
                       GET IN TOUCH
