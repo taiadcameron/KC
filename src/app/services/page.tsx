@@ -88,14 +88,14 @@ export default function Services() {
   return (
     <>
       {/* ✅ Top bar always visible */}
-      <div className="flex justify-between fixed w-full items-start p-2 lg:p-8 z-20">
+      <div className="flex justify-between fixed w-full items-start p-2 lg:p-8 z-10">
         <div className="overlay-heading text-gray-400">
           <h1 className="text-2xl font-bold">KETER</h1>
           <h1 className="text-2xl font-bold">CREATIVE</h1>
         </div>
         <button
           type="button"
-          className="overlay-logo flex flex-col items-center cursor-pointer z-20 bg-transparent border-none"
+          className="overlay-logo flex flex-col items-center cursor-pointer z-10 bg-transparent border-none"
           onClick={() => router.push("/")}
         >
           <Image src={logo} alt="Logo small" width={40} height={40} />
@@ -109,7 +109,7 @@ export default function Services() {
           {!expanded && (
             <motion.div
               key="main-content"
-              className="px-2 lg:px-8 pt-24 lg:pt-30 z-10 relative flex flex-col justify-between mb-4 lg:mb-2 h-1/2"
+              className="px-2 lg:px-8 pt-24 lg:pt-30 z-20 relative flex flex-col justify-between pb-12   h-1/2"
               variants={mainContainerVariants}
               initial="hidden"
               animate="visible"
@@ -149,7 +149,7 @@ export default function Services() {
                   >
                     WEBSITES
                   </p>
-                  <div className="h-0.5 bg-white w-full"></div>
+                  <div className="h-0.5 bg-black  w-full"></div>
                   <p
                     className="text-sm font-semibold cursor-pointer"
                     onClick={() => handleServiceClick("seo")}
@@ -162,7 +162,7 @@ export default function Services() {
               {/* Services - Desktop */}
               <motion.div
                 variants={childVariants}
-                className="hidden md:flex w-full  items-center gap-3 lg:gap-4 mt-4 h-fit "
+                className="hidden md:flex w-full  items-center gap-3 lg:gap-4  h-fit "
               >
                 <p className="text-sm lg:text-base whitespace-nowrap flex-shrink-0">
                   reiciendis! Modi optio voluptate totam. Officia quaerat,
@@ -217,7 +217,7 @@ export default function Services() {
           {expanded && activeService && (
             <motion.div
               key={activeService}
-              className="absolute inset-0 flex flex-col text-white mt-24 lg:pt-35 px-6 z-10 overflow-y-auto"
+              className="absolute inset-0 flex flex-col text-white pt-24  px-6 z-10 overflow-y-auto"
               variants={overlayContainerVariants}
               initial="hidden"
               animate="visible"
@@ -227,7 +227,7 @@ export default function Services() {
               {/* Close button */}
               <button
                 onClick={handleClose}
-                className="absolute top-5 right-8 text-white text-lg cursor-pointer -mt-2 lg:mt-32"
+                className="absolute top-5 right-8 text-white text-lg cursor-pointer pt-24 lg:pt-40"
               >
                 (Close)
               </button>
@@ -236,7 +236,7 @@ export default function Services() {
                 <>
                   <motion.h1
                     variants={childVariants}
-                    className="text-4xl md:text-9xl font-bold mb-4"
+                    className="text-4xl md:text-9xl font-bold mb-4 0"
                   >
                     WEBSITES
                   </motion.h1>
@@ -256,59 +256,58 @@ export default function Services() {
                     commodi? Soluta, exercitationem? Adipisci debitis magni
                     voluptatem.
                   </motion.p>
+                  <div className="h-full flex flex-col justify-between mb-12">
+                    <motion.div
+                      variants={childVariants}
+                      className="lg:max-w-2/5 mt-12"
+                    >
+                      <div className="grid grid-cols-2 grid-rows-2 gap-4">
+                        <div className="flex flex-col gap-2">
+                          <p>01</p>
+                          <div className="bg-white h-0.5 w-1/4"></div>
+                          <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Perspiciatis praesentium accusamus dolores
+                            totam neque est aperiam, nesciunt saepe odit eos.
+                          </p>
+                        </div>
 
-                  <motion.div
-                    variants={childVariants}
-                    className="lg:max-w-2/5 mt-12"
-                  >
-                    <div className="grid grid-cols-2 grid-rows-2 gap-8">
-                      <div className="flex flex-col gap-2">
-                        <p>01</p>
-                        <div className="bg-white h-0.5 w-1/4"></div>
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Perspiciatis praesentium accusamus dolores totam
-                          neque est aperiam, nesciunt saepe odit eos.
-                        </p>
-                      </div>
+                        <div className="flex flex-col gap-2">
+                          <p>02</p>
+                          <div className="bg-white h-0.5 w-1/4"></div>
+                          <p>
+                            Dolorum consequatur excepturi, sapiente ullam rerum
+                            quasi deserunt a placeat dolore ipsa mollitia.
+                          </p>
+                        </div>
 
-                      <div className="flex flex-col gap-2">
-                        <p>02</p>
-                        <div className="bg-white h-0.5 w-1/4"></div>
-                        <p>
-                          Dolorum consequatur excepturi, sapiente ullam rerum
-                          quasi deserunt a placeat dolore ipsa mollitia.
-                        </p>
+                        <div className="flex row-start-2 flex-col gap-2">
+                          <p>03</p>
+                          <div className="bg-white h-0.5 w-1/4"></div>
+                          <p>
+                            Architecto reiciendis perferendis delectus natus,
+                            possimus beatae dignissimos provident laboriosam.
+                          </p>
+                        </div>
+                        <div className="flex row-start-2 flex-col gap-2">
+                          <p>04</p>
+                          <div className="bg-white h-0.5 w-1/4"></div>
+                          <p>
+                            Architecto reiciendis perferendis delectus natus,
+                            possimus beatae dignissimos provident laboriosam.
+                          </p>
+                        </div>
                       </div>
-
-                      <div></div>
-
-                      <div className="flex row-start-2 flex-col gap-2">
-                        <p>03</p>
-                        <div className="bg-white h-0.5 w-1/4"></div>
-                        <p>
-                          Architecto reiciendis perferendis delectus natus,
-                          possimus beatae dignissimos provident laboriosam.
-                        </p>
-                      </div>
-                      <div className="flex row-start-2 flex-col gap-2">
-                        <p>04</p>
-                        <div className="bg-white h-0.5 w-1/4"></div>
-                        <p>
-                          Architecto reiciendis perferendis delectus natus,
-                          possimus beatae dignissimos provident laboriosam.
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                  <motion.div
-                    variants={childVariants}
-                    className="lg:mt-8 border-y-2 w-full md:w-fit px-12  flex justify-center  py-2"
-                  >
-                    <Link href="/contact" className="text-white text-xl  ">
-                      GET IN TOUCH
-                    </Link>
-                  </motion.div>
+                    </motion.div>
+                    <motion.div
+                      variants={childVariants}
+                      className=" border-y-2 w-full md:w-fit px-12  flex justify-center  py-2"
+                    >
+                      <Link href="/contact" className="text-white text-xl  ">
+                        GET IN TOUCH
+                      </Link>
+                    </motion.div>
+                  </div>
                 </>
               )}
 
