@@ -99,7 +99,7 @@ export default function Services() {
           onClick={() => router.push("/")}
         >
           <Image src={logo} alt="Logo small" width={40} height={40} />
-          <span className="text-sm mt-1 invert text-white">BACK</span>
+          <span className="text-sm mt-1">BACK</span>
         </button>
       </div>
 
@@ -109,7 +109,7 @@ export default function Services() {
           {!expanded && (
             <motion.div
               key="main-content"
-              className="px-2 lg:px-8 pt-24 lg:pt-30 z-10 relative flex flex-col justify-between h-1/2"
+              className="px-2 lg:px-8 pt-24 lg:pt-30 z-10 relative flex flex-col justify-between mb-4 lg:mb-2 h-1/2"
               variants={mainContainerVariants}
               initial="hidden"
               animate="visible"
@@ -137,7 +137,7 @@ export default function Services() {
               {/* Services - Mobile */}
               <motion.div
                 variants={childVariants}
-                className="block md:hidden mt-4 invert text-white"
+                className="block md:hidden  "
               >
                 <p className="text-sm  ">
                   Lorem ipsum dolor sit amet consectetur adipisicing{" "}
@@ -227,7 +227,7 @@ export default function Services() {
               {/* Close button */}
               <button
                 onClick={handleClose}
-                className="absolute top-5 right-8 text-white text-lg cursor-pointer -mt-4 lg:mt-32"
+                className="absolute top-5 right-8 text-white text-lg cursor-pointer -mt-2 lg:mt-32"
               >
                 (Close)
               </button>
@@ -303,7 +303,7 @@ export default function Services() {
                   </motion.div>
                   <motion.div
                     variants={childVariants}
-                    className="mt-8 border-y-2 w-full md:w-fit px-12  flex justify-center  py-2"
+                    className="lg:mt-8 border-y-2 w-full md:w-fit px-12  flex justify-center  py-2"
                   >
                     <Link href="/contact" className="text-white text-xl  ">
                       GET IN TOUCH
@@ -367,7 +367,7 @@ export default function Services() {
                   </motion.div>
                   <motion.div
                     variants={childVariants}
-                    className="mt-8 border-y-2 w-full md:w-fit px-12  flex justify-center  py-2"
+                    className="lg:mt-8 border-y-2 w-full md:w-fit px-12  flex justify-center  py-2"
                   >
                     <Link href="/contact" className="text-white text-xl  ">
                       GET IN TOUCH
