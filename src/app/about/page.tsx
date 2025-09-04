@@ -139,7 +139,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className="flex lg:mt-12 mt-4 flex-col lg:flex-row">
+          <div className="text-sm lg:base flex lg:mt-12 mt-4 flex-col lg:flex-row">
             <div className="flex flex-col w-full lg:w-1/2 font-bold h-full justify-start gap-8 lg:gap-12">
               <div ref={locationRef} className="flex justify-between">
                 <p className="text-gray-500 w-full">LOCATION</p>

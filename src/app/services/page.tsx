@@ -242,7 +242,7 @@ export default function Services() {
                   </motion.h1>
                   <motion.p
                     variants={childVariants}
-                    className="text-base max-w-4xl"
+                    className="text-sm lg:base max-w-4xl"
                   >
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. At
                     mollitia alias, perspiciatis illo consequatur officiis
@@ -261,7 +261,7 @@ export default function Services() {
                       variants={childVariants}
                       className="lg:max-w-2/5 mt-12"
                     >
-                      <div className="grid grid-cols-2 grid-rows-2 gap-4">
+                      <div className="grid text-sm lg:base grid-cols-2 grid-rows-2 gap-4">
                         <div className="flex flex-col gap-2">
                           <p>01</p>
                           <div className="bg-white h-0.5 w-1/4"></div>
@@ -321,7 +321,7 @@ export default function Services() {
                   </motion.h1>
                   <motion.p
                     variants={childVariants}
-                    className="text-base max-w-3xl"
+                    className="text-base max-w-3xl text-sm lg:base"
                   >
                     Our SEO strategies help your business rank higher on Google,
                     drive traffic, and increase conversions. With keyword
@@ -335,7 +335,7 @@ export default function Services() {
 
                   <motion.div
                     variants={childVariants}
-                    className="w-full md:max-w-3xl mt-4 md:mt-12"
+                    className="w-full md:max-w-3xl mt-4 md:mt-12 text-sm lg:base"
                   >
                     <div className="grid grid-cols-2 gap-4">
                       <div className="flex flex-col gap-2">
