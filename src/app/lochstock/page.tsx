@@ -252,21 +252,6 @@ export default function LochStock() {
               />
             </div>
           </div>
-          {/* 5 image */}
-          <div
-            className="flex justify-center items-center min-h-screen p-2"
-            style={{
-              transform: `translateY(${scrollY * 0.3}px)`,
-            }}
-          >
-            <div className="overflow-hidden ">
-              <Image
-                src={mma5}
-                alt="Bird"
-                className=" object-cover transition-transform duration-300 "
-              />
-            </div>
-          </div>
 
           {/* Additional spacing for smooth scrolling */}
           <div className="h-screen"></div>
