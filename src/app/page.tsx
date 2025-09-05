@@ -45,7 +45,7 @@ export default function Home() {
         title: "MORTON MARTIAL ARTS",
         thumbimg: [mmat],
         images: [mma1, mma2, mma3, mma4, mma5],
-        url: "/mortonmartialarts",
+        url: "/mortonma",
         desc: "DFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDJADFKDAFMDKFMSDFSDFS",
         services: "Web Design / SEO",
         tools: "Figma / Framer",
