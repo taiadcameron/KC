@@ -57,7 +57,7 @@ export default function Home() {
         thumbimg: [lst],
 
         images: [ls1, ls2, ls3, ls4],
-        url: "/lochstoch",
+        url: "/lochstock",
         desc: "DFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDJADFKDAFMDKFMSDFSDFS",
         services: "Web Design",
         tools: "Figma / Framer",

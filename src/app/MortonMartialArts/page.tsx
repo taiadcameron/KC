@@ -143,7 +143,7 @@ export default function MortonMartialArts() {
                 01
               </p>
               <div ref={viewSiteRef} className=" flex  gap-4">
-                <a href="www.mortonmartialarts.com">
+                <a href="https://mortonmartialarts.com/">
                   {" "}
                   <p className="">VIEW SITE</p>{" "}
                 </a>
