@@ -1,8 +1,28 @@
 "use client";
 
 import Image from "next/image";
-import img1 from "../../public/Stack.png";
-import img2 from "../../public/bird.jpg";
+
+import mmat from "../../public/mma/bjj.jpg";
+
+import mma1 from "../../public/mma/mma1.png";
+import mma2 from "../../public/mma/mma2.png";
+import mma3 from "../../public/mma/mma3.png";
+import mma4 from "../../public/mma/mma4.png";
+import mma5 from "../../public/mma/mma5.png";
+
+import lst from "../../public/Stack.png";
+import ls1 from "../../public/ls/ls1.png";
+import ls2 from "../../public/ls/ls2.png";
+import ls3 from "../../public/ls/ls3.png";
+import ls4 from "../../public/ls/ls4.png";
+
+import lwt from "../../public/lw/lwt.png";
+import lw1 from "../../public/lw/lw1.png";
+import lw2 from "../../public/lw/lw2.png";
+import lw3 from "../../public/lw/lw3.png";
+import lw4 from "../../public/lw/lw4.png";
+import lw5 from "../../public/lw/lw5.png";
+
 import sideArrow from "../../public/Group 6.svg";
 
 import logo from "../../public/kclgoo.svg";
@@ -23,29 +43,37 @@ export default function Home() {
       {
         id: "01",
         title: "MORTON MARTIAL ARTS",
-        images: [img1, img2, img1, img2],
-        url: "/MortonMartialArts",
+        thumbimg: [mmat],
+        images: [mma1, mma2, mma3, mma4, mma5],
+        url: "/mortonmartialarts",
         desc: "DFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDJADFKDAFMDKFMSDFSDFS",
         services: "Web Design / SEO",
         tools: "Figma / Framer",
+        siteurl: "https://www.mortonmartialarts.com",
       },
       {
         id: "02",
         title: "LOCH STOCH",
-        images: [img1, img2],
-        url: "#",
+        thumbimg: [lst],
+
+        images: [ls1, ls2, ls3, ls4],
+        url: "/lochstoch",
         desc: "DFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDJADFKDAFMDKFMSDFSDFS",
-        services: "Web Design / SEO",
+        services: "Web Design",
         tools: "Figma / Framer",
+        siteurl: "https://www.lochandstock.co.uk/",
       },
       {
         id: "03",
-        title: "AMARILS",
-        images: [img1, img2],
-        url: "#",
+        title: "LYNN W CURTAINS & BLINDS",
+        thumbimg: [lwt],
+
+        images: [lw1, lw2, lw3, lw4, lw5],
+        url: "/lynnw",
         desc: "DFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDMDMDKSDOSAKDFDJADFKDAFMDKFMSDFSDFS",
         services: "Web Design / SEO",
         tools: "Figma / Framer",
+        siteurl: "https://lynnewatlerscurtainsandblinds.framer.website/",
       },
     ],
     []
@@ -157,7 +185,6 @@ export default function Home() {
       height: rect.height + "px",
       objectFit: "cover",
       zIndex: "101",
-      borderRadius: "8px",
     });
 
     // Calculate target dimensions
@@ -286,7 +313,6 @@ export default function Home() {
       height: currentHeight + "px",
       objectFit: "cover",
       zIndex: "101",
-      borderRadius: "8px",
     });
     // Hide all carousel images immediately
     if (modalCarousel) {
@@ -812,10 +838,10 @@ export default function Home() {
         <div className="flex flex-row justify-between">
           <div className="flex gap-4">
             <div ref={headingRef} className="flex flex-col overflow-hidden">
-              <h1 className="text-4xl md:text-8xl lg:text-[140px] leading-none font-black">
+              <h1 className=" text-4xl md:text-8xl lg:text-[140px]  leading-none font-extrabold">
                 KETER
               </h1>
-              <h1 className="text-4xl md:text-8xl lg:text-[140px] leading-none font-black">
+              <h1 className="text-4xl md:text-8xl lg:text-[140px] leading-none font-extrabold">
                 CREATIVE
               </h1>
             </div>
@@ -854,14 +880,14 @@ export default function Home() {
               <div>
                 <div
                   ref={projectsHeaderRef}
-                  className="font-extrabold flex gap-2 text-sm mb-2 items-center"
+                  className="font-extrabold flex gap-2 text-base mb-2 items-center"
                 >
                   <h3>
                     LATEST <br /> PROJECTS
                   </h3>
                   <Image src={arrow2} alt="Down arrow" width={12} height={12} />
                 </div>
-                <div ref={projectsListRef} className="flex flex-col text-sm">
+                <div ref={projectsListRef} className="flex flex-col ">
                   {projects.map((project, index) => (
                     <p
                       key={project.id}
@@ -905,9 +931,9 @@ export default function Home() {
                     ref={(el) => {
                       imagesRef.current[index] = el;
                     }}
-                    src={project.images[0]}
+                    src={project.thumbimg[0]}
                     alt={`Showcase of ${project.title}`}
-                    className="w-full h-[120px] opacity-0 cursor-pointer transition-all duration-300"
+                    className="w-full h-[120px] opacity-0 cursor-pointer transition-all duration-300 object-center"
                     style={{ objectFit: "cover" }}
                     onMouseEnter={() => {
                       if (window.innerWidth >= 768) {
@@ -1021,7 +1047,7 @@ export default function Home() {
                     ref={(el) => {
                       imagesRef.current[index + 3] = el;
                     }}
-                    src={project.images[0]}
+                    src={project.thumbimg[0]}
                     alt={`Showcase of ${project.title}`}
                     className="w-full mb-2 transition-all duration-300 cursor-pointer opacity-0 flex-1 object-cover"
                     style={{
@@ -1116,12 +1142,12 @@ export default function Home() {
           <div className="overlay-details w-full md:w-[33vw] text-left mb-4 md:mb-0 font-bold flex flex-col justify-between h-full pr-24 z-10">
             {selectedProject !== null && (
               <>
-                <div className="h-full "></div>
+                <div className="h-full  "></div>
                 <div className="h-full flex flex-col justify-end">
-                  <p className="text-4xl text-[#BB885D]">
+                  <p className="text-4xl font-[700] text-[#BB885D]">
                     {projects[selectedProject].id}
                   </p>
-                  <h2 className="text-6xl text-[#BB885D]">
+                  <h2 className="text-7xl text-[#BB885D]">
                     {projects[selectedProject].title}
                   </h2>
                 </div>
@@ -1200,13 +1226,6 @@ export default function Home() {
                         height={32}
                       />
                     </button>
-
-                    {/* <div className="flex items-center px-3 py-2 rounded-md bg-white/20 backdrop-blur-sm text-sm">
-                      <span>
-                        {currentImageIndex + 1} /{" "}
-                        {projects[selectedProject].images.length}
-                      </span>
-                    </div> */}
                   </div>
                 )}
               </>

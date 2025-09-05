@@ -83,7 +83,7 @@ export default function Contact() {
         <div className="w-full flex flex-col ">
           <h1
             ref={headingRef}
-            className="text-5xl text-center mb-4 md:text-8xl font-black"
+            className="text-5xl text-center mb-4 md:text-8xl font-extrabold"
           >
             BOOK A CALL
           </h1>

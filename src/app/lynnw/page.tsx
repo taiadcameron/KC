@@ -6,17 +6,17 @@ import sideArrow from "../../../public/Group 6.svg";
 import img1 from "../../../public/bird.jpg";
 import logo from "../../../public/kclgoo.svg";
 
-import mma1 from "../../../public/mma/mma1.png";
-import mma2 from "../../../public/mma/mma2.png";
-import mma3 from "../../../public/mma/mma3.png";
-import mma4 from "../../../public/mma/mma4.png";
-import mma5 from "../../../public/mma/mma5.png";
+import mma1 from "../../../public/lw/lw1.png";
+import mma2 from "../../../public/lw/lw2.png";
+import mma3 from "../../../public/lw/lw3.png";
+import mma4 from "../../../public/lw/lw4.png";
+import mma5 from "../../../public/lw/lw5.png";
 
 import { useRouter } from "next/navigation";
 import boxarrow from "../../../public/box-arrow.svg";
 
 import { gsap } from "gsap";
-export default function MortonMartialArts() {
+export default function Lynnw() {
   const router = useRouter();
   const [scrollY, setScrollY] = useState(0);
 
@@ -138,12 +138,12 @@ export default function MortonMartialArts() {
             <div className="flex flex-col justify-between">
               <p
                 ref={projectNumberRef}
-                className="text-4xl text-[#5C4677] font-bold "
+                className="text-4xl text-[#9E4380] font-bold "
               >
                 01
               </p>
               <div ref={viewSiteRef} className=" flex  gap-4">
-                <a href="www.mortonmartialarts.com">
+                <a href="https://lynnewatlerscurtainsandblinds.framer.website/">
                   {" "}
                   <p className="">VIEW SITE</p>{" "}
                 </a>
@@ -157,8 +157,12 @@ export default function MortonMartialArts() {
               </div>
             </div>
             <div className="w-1/2">
-              <h1 ref={titleRef} className="text-4xl font-bold text-[#5C4677] ">
-                MORTON MARTIAL ARTS
+              <h1
+                ref={titleRef}
+                className="text-4xl font-bold text-[#9E4380] leading-8 "
+              >
+                LYNN W{" "}
+                <span className="text-xl leading-0 "> CURTAINS & BLINDS</span>
               </h1>
             </div>
           </div>
@@ -170,7 +174,7 @@ export default function MortonMartialArts() {
           <div className="w-full flex flex-col justify-between">
             <div ref={servicesRef} className="flex justify-between w-full mt-4">
               <p className="text-gray-600">Services</p>
-              <p className="font-bold">Web Design / SEO</p>
+              <p className="font-bold">Web Design</p>
             </div>
             <div ref={toolsRef} className="flex justify-between w-full">
               <p className="text-gray-600">Tools</p>

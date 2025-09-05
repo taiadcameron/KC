@@ -113,7 +113,7 @@ const About = () => {
           <div className="flex flex-col justify-between">
             <h1
               ref={headingRef}
-              className="mb-2 text-4xl md:text-6xl lg:text-9xl font-black"
+              className="mb-2 text-4xl md:text-6xl lg:text-9xl font-extrabold"
             >
               ABOUT US
             </h1>

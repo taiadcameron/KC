@@ -123,7 +123,7 @@ export default function Services() {
               <motion.div variants={childVariants}>
                 <motion.h1
                   variants={childVariants}
-                  className="mb-2 text-4xl md:text-6xl lg:text-8xl font-black"
+                  className="mb-2 text-4xl md:text-6xl lg:text-8xl font-extrabold"
                 >
                   OUR <br />
                   SERVICES
@@ -222,7 +222,7 @@ export default function Services() {
           {expanded && activeService && (
             <motion.div
               key={activeService}
-              className="absolute inset-0 flex flex-col text-white pt-24  px-6 z-10 overflow-y-auto"
+              className="absolute inset-0 flex flex-col text-white pt-24 px-3 lg:pt-40 lg:px-8 z-10 overflow-y-auto"
               variants={overlayContainerVariants}
               initial="hidden"
               animate="visible"
